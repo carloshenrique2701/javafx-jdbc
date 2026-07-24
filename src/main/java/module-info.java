@@ -10,4 +10,7 @@ module com.main.jfx {
     exports com.main.jfx.gui.util;
     exports com.main.jfx.gui;
     opens com.main.jfx.gui to javafx.fxml;
+
+    // Esta linha dá acesso ao PropertyValueFactory nas entidades
+    opens com.main.jfx.model.entities to javafx.base;
 }
