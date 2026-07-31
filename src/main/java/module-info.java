@@ -1,6 +1,7 @@
 module com.main.jfx {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
     // Permite que o JavaFX acesse a classe Main para iniciar o app
     exports com.main.jfx;
