@@ -1,6 +1,7 @@
 package com.main.jfx.gui;
 
 import com.main.jfx.Main;
+import com.main.jfx.gui.listeners.DataChangeListener;
 import com.main.jfx.gui.util.Alerts;
 import com.main.jfx.gui.util.Utils;
 import com.main.jfx.model.entities.Department;
@@ -26,7 +27,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DepartmentListController implements Initializable {
+public class DepartmentListController implements Initializable, DataChangeListener {
 
     private DepartmentService service;
 
@@ -85,7 +86,9 @@ public class DepartmentListController implements Initializable {
 
             DepartmentFormController controller = loader.getController();
             controller.setDepartment(obj);
+            controller.setDepartmentService(new DepartmentService());
             controller.updateFormData();
+            controller.subscribeDataChangeListener(this);
 
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Enter Department data");
@@ -98,5 +101,9 @@ public class DepartmentListController implements Initializable {
         } catch (IOException e) {
             Alerts.showAlert("IOExeption", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+    @Override
+    public void onDataChange() {
+        updateTableView();
     }
 }
