@@ -3,6 +3,7 @@ package com.main.jfx.model.dao.impl;
 
 import com.main.jfx.db.DB;
 import com.main.jfx.db.DbException;
+import com.main.jfx.db.DbIntegrityException;
 import com.main.jfx.model.dao.DepartmentDao;
 import com.main.jfx.model.entities.Department;
 
@@ -87,7 +88,7 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 			st.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new DbException(e.getMessage());
+			throw new DbIntegrityException(e.getMessage());
 		} finally {
 			DB.closeStatement(st);
 		}
