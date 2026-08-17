@@ -6,6 +6,7 @@ import com.main.jfx.gui.listeners.DataChangeListener;
 import com.main.jfx.gui.util.Alerts;
 import com.main.jfx.gui.util.Utils;
 import com.main.jfx.model.entities.Seller;
+import com.main.jfx.model.services.DepartmentService;
 import com.main.jfx.model.services.SellerService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -109,7 +110,8 @@ public class SellerListController implements Initializable, DataChangeListener {
 
             SellerFormController controller = loader.getController();
             controller.setSeller(obj);
-            controller.setSellerService(new SellerService());
+            controller.setServices(new SellerService(), new DepartmentService());
+            controller.loadAssociatedObjects();
             controller.updateFormData();
             controller.subscribeDataChangeListener(this);
 
@@ -122,6 +124,7 @@ public class SellerListController implements Initializable, DataChangeListener {
             dialogStage.showAndWait();
 
         } catch (IOException e) {
+            e.printStackTrace();
             Alerts.showAlert("IOExeption", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -188,6 +191,7 @@ public class SellerListController implements Initializable, DataChangeListener {
                 service.remove(obj);
                 updateTableView();
             } catch (DbIntegrityException e) {
+                e.printStackTrace();
                 Alerts.showAlert("Error removing object", null, e.getMessage(), Alert.AlertType.ERROR);
             }
         }
