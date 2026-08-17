@@ -12,11 +12,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +65,7 @@ public class SellerListController implements Initializable, DataChangeListener {
     public void onBtNewAction(ActionEvent event) {
         Stage parentStage = Utils.currentStage(event);
         Seller obj = new Seller();
-        //createDialogForm("/com/main/jfx/Seller/SellerForm.fxml", parentStage, obj);
+        createDialogForm("/com/main/jfx/Seller/SellerForm.fxml", parentStage, obj);
     }
 
     public void setSellerService(SellerService service) {
@@ -96,7 +101,7 @@ public class SellerListController implements Initializable, DataChangeListener {
         initEditButtons();
         initRemoveButtons();
     }
-    /*
+
     private void createDialogForm(String absoluteName, Stage parentStage, Seller obj) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
@@ -120,7 +125,7 @@ public class SellerListController implements Initializable, DataChangeListener {
             Alerts.showAlert("IOExeption", "Error loading view", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-    */
+
 
     @Override
     public void onDataChange() {
@@ -129,24 +134,27 @@ public class SellerListController implements Initializable, DataChangeListener {
 
     private void initEditButtons() {
         tableColumnEDIT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        tableColumnEDIT.setCellFactory(param -> new TableCell<Seller, Seller>() {
-            private final Button button = new Button("edit");
+        tableColumnEDIT.setCellFactory(param -> {
+            return new TableCell<Seller, Seller>() {
+                private final Button button = new Button("edit");
 
-            @Override
-            protected void updateItem(Seller obj, boolean empty) {
-                super.updateItem(obj, empty);
-                if (obj == null) {
-                    setGraphic(null);
-                    return;
+                @Override
+                protected void updateItem(Seller obj, boolean empty) {
+                    super.updateItem(obj, empty);
+                    if (obj == null) {
+                        setGraphic(null);
+                        return;
+                    }
+
+                    setGraphic(button);
+                    button.setOnAction(
+                            event -> {
+                                createDialogForm("/com/main/jfx/Seller/SellerForm.fxml", Utils.currentStage(event), obj);
+                            }
+                    );
                 }
 
-                setGraphic(button);
-                button.setOnAction(
-                        //event -> createDialogForm( "/com/main/jfx/Seller/SellerForm.fxml", Utils.currentStage(event), obj)
-                        event -> System.out.println("Editando")
-                );
-            }
-
+            };
         });
     }
 
