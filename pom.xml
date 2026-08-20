@@ -60,7 +60,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.main.jfx/com.main.jfx.Main</mainClass>
+                            <mainClass>com.main.jfx/jfx.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

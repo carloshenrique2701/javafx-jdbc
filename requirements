@@ -1,0 +1,10 @@
+- create a database named "enterprisebd" with the schema.sql
+
+- XAMPP (recommended) or MySQL server
+
+cd out/artifacts/Fist JFX App
+
+java --module-path . --add-modules javafx.controls,javafx.fxml -cp jfx.jar jfx.Main
+
+ ***Simplified***
+- you can execute the .bat in out/artifacts/Fist JFX App

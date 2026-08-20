@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="jfx:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/jfx_jar</output-path>
+    <root id="root">
+      <element id="archive" name="jfx.jar">
+        <element id="module-output" name="jfx" />
+      </element>
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:win:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:win:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:win:25" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:win:25" />
+    </root>
+  </artifact>
+</component>

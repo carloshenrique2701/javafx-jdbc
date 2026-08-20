@@ -1,0 +1,1 @@
+java --module-path . --add-modules javafx.controls,javafx.fxml -cp jfx.jar jfx.Main
